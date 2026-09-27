@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ridgeway Barbers | Plymouth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,500;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'DM Sans', sans-serif; background: #f5f7fa; color: #1a2332; }
+
+        /* Hero: clean navy/white, full-bleed image */
+        .hero {
+            position: relative; min-height: 100vh;
+            background: linear-gradient(135deg, #0f1b2d 0%, #1a2d4a 100%);
+            display: flex; align-items: center; overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: url('https://images.unsplash.com/photo-1599351430140-5e3e0e0e0e0e?w=1200&q=80') center/cover;
+            opacity: 0.08;
+        }
+        .hero-content { position: relative; z-index: 2; padding: 4rem 5rem; max-width: 700px; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,.08);
+            padding: 0.5rem 1.2rem; border-radius: 100px; font-size: 0.8rem; color: #8ab4f8;
+            font-weight: 500; margin-bottom: 2rem; letter-spacing: 0.5px; border: 1px solid rgba(138,180,248,.2);
+        }
+        .hero h1 {
+            font-family: 'DM Serif Display', serif; font-size: 4.5rem; color: #fff;
+            line-height: 1.1; margin-bottom: 0.3rem;
+        }
+        .hero h1 .accent { color: #8ab4f8; }
+        .hero-sub {
+            font-size: 1.2rem; color: #a0b8d9; font-weight: 300; line-height: 1.7;
+            margin: 1.5rem 0 2.5rem; max-width: 480px;
+        }
+        .hero-stats { display: flex; gap: 2.5rem; margin-top: 2rem; }
+        .hero-stats div { text-align: center; }
+        .hero-stats .num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: #8ab4f8; }
+        .hero-stats .lbl { font-size: 0.75rem; color: #6a85a5; text-transform: uppercase; letter-spacing: 1px; }
+
+        .btn-navy {
+            display: inline-block; padding: 1rem 2.5rem; background: #8ab4f8; color: #0f1b2d;
+            text-decoration: none; font-weight: 700; border-radius: 8px; transition: all .3s;
+            font-size: 0.95rem; border: none; cursor: pointer;
+        }
+        .btn-navy:hover { background: #a6c8ff; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(138,180,248,.3); }
+        .btn-outline-navy {
+            display: inline-block; padding: 1rem 2.5rem; border: 2px solid #8ab4f8; color: #8ab4f8;
+            text-decoration: none; font-weight: 500; border-radius: 8px; margin-left: 1rem;
+            transition: all .3s; font-size: 0.95rem;
+        }
+        .btn-outline-navy:hover { background: #8ab4f8; color: #0f1b2d; }
+
+        /* Features: clean card row */
+        .features { padding: 5rem; background: #fff; }
+        .features-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
+        .feature-card { padding: 2rem; text-align: center; border-radius: 12px; background: #f5f7fa; transition: all .3s; }
+        .feature-card:hover { background: #e8edf5; transform: translateY(-3px); }
+        .feature-card .icon { width: 48px; height: 48px; background: #0f1b2d; color: #8ab4f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.3rem; font-weight: 700; }
+        .feature-card h3 { font-size: 1.1rem; color: #1a2332; font-weight: 700; }
+        .feature-card p { font-size: 0.85rem; color: #6a85a5; margin-top: 0.4rem; }
+
+        /* Services: table-like clean */
+        .services { padding: 5rem; background: #f5f7fa; }
+        .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+        .services-header h2 { font-family: 'DM Serif Display', serif; font-size: 2.8rem; color: #1a2332; }
+        .services-header h2 .accent { color: #8ab4f8; }
+        .services-header p { color: #6a85a5; font-size: 0.95rem; }
+        .service-table { width: 100%; border-collapse: collapse; }
+        .service-table tr { border-bottom: 1px solid #e0e6ef; }
+        .service-table td { padding: 1.2rem 0; font-size: 1rem; }
+        .service-table .name { font-weight: 500; color: #1a2332; }
+        .service-table .desc { color: #6a85a5; font-size: 0.9rem; }
+        .service-table .price { font-weight: 700; color: #0f1b2d; text-align: right; font-family: 'DM Serif Display', serif; font-size: 1.2rem; }
+
+        /* Testimonial: navy card */
+        .testimonial { padding: 5rem; background: #0f1b2d; text-align: center; }
+        .testimonial blockquote { max-width: 600px; margin: 0 auto; font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: #fff; line-height: 1.5; }
+        .testimonial cite { display: block; margin-top: 1.5rem; color: #8ab4f8; font-style: normal; font-weight: 500; font-size: 0.95rem; }
+
+        /* Contact: split */
+        .contact { padding: 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; background: #fff; }
+        .contact h2 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: #1a2332; }
+        .contact h2 .accent { color: #8ab4f8; }
+        .contact-info p { margin-bottom: 0.8rem; color: #4a5a75; }
+        .contact-info a { color: #0f1b2d; text-decoration: none; font-weight: 500; }
+        .contact-info a:hover { color: #8ab4f8; }
+        .contact-map { background: #e8edf5; border-radius: 12px; padding: 2rem; display: flex; align-items: center; justify-content: center; color: #6a85a5; font-size: 0.9rem; min-height: 200px; }
+
+        footer { padding: 2rem 5rem; background: #f5f7fa; color: #6a85a5; font-size: 0.85rem; display: flex; justify-content: space-between; }
+
+        @media (max-width:768px){
+            .hero-content { padding: 2rem 1.5rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero-stats { gap: 1.5rem; }
+            .features { padding: 2.5rem 1.5rem; }
+            .features-grid { grid-template-columns: 1fr 1fr; }
+            .services { padding: 2.5rem 1.5rem; }
+            .services-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .contact { grid-template-columns: 1fr; padding: 2.5rem 1.5rem; }
+            footer { padding: 1.5rem; flex-direction: column; text-align: center; gap: 0.5rem; }
+            .btn-outline-navy { margin-left: 0; margin-top: 0.8rem; display: inline-block; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">✦ Plymouth's Most Recommended</div>
+            <h1>Ridgeway<br><span class="accent">Barbers</span></h1>
+            <p class="hero-sub">Precision haircuts and classic grooming in a clean, welcoming space. No fuss — just fresh fades and great conversation.</p>
+            <div>
+                <a href="#book" class="btn-navy">Book Your Cut</a>
+                <a href="#services" class="btn-outline-navy">View Services</a>
+            </div>
+            <div class="hero-stats">
+                <div><div class="num">800+</div><div class="lbl">5★ Reviews</div></div>
+                <div><div class="num">12</div><div class="lbl">Years Open</div></div>
+                <div><div class="num">5</div><div class="lbl">Expert Barbers</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">✦</div>
+                <h3>Walk-ins OK</h3>
+                <p>No appointment? No problem. Grab a seat.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">✦</div>
+                <h3>Hot Towel Finish</h3>
+                <p>Every cut includes a relaxing hot towel.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">✦</div>
+                <h3>Student Discount</h3>
+                <p>10% off with valid student ID.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">✦</div>
+                <h3>Free Parking</h3>
+                <p>Free parking behind the shop.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="services-header">
+            <div>
+                <h2>Services & <span class="accent">Prices</span></h2>
+                <p>Premium cuts at fair prices — every single time.</p>
+            </div>
+        </div>
+        <table class="service-table">
+            <tr><td class="name">Gentleman's Cut</td><td class="desc">Wash, cut & style with hot towel</td><td class="price">£17</td></tr>
+            <tr><td class="name">Skin Fade</td><td class="desc">Zero-blade fade with precise lines</td><td class="price">£20</td></tr>
+            <tr><td class="name">Beard Groom</td><td class="desc">Trim, shape & oil treatment</td><td class="price">£13</td></tr>
+            <tr><td class="name">Cut & Beard</td><td class="desc">Full haircut plus beard sculpt</td><td class="price">£27</td></tr>
+            <tr><td class="name">Kids Cut</td><td class="desc">Ages 3–12, calm & patient</td><td class="price">£10</td></tr>
+        </table>
+    </section>
+
+    <section class="testimonial">
+        <blockquote>"Ridgeway is the only place I trust my hair. Clean, professional, and the lads actually listen to what you want."</blockquote>
+        <cite>— Tom W., Plympton</cite>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-info">
+            <h2>Get in <span class="accent">Touch</span></h2>
+            <p style="margin-top:1.5rem;"><strong>Ridgeway Barbers Plymouth</strong></p>
+            <p>45 Ridgeway Road, Plympton, Plymouth, PL7 2AW</p>
+            <p>✆ <a href="tel:+441752987654">01752 987654</a></p>
+            <p>✉ <a href="mailto:ridgewaybarbers@outlook.com">ridgewaybarbers@outlook.com</a></p>
+            <p style="margin-top:1rem;font-weight:500;color:#8ab4f8;">Mon–Fri 9am–6pm · Sat 8am–5pm · Sun Closed</p>
+            <div style="margin-top:1.5rem;"><a href="#" class="btn-navy">Book Online</a></div>
+        </div>
+        <div class="contact-map">
+            <p>📍 Ridgeway Road, Plympton<br>Free parking at rear</p>
+        </div>
+    </section>
+
+    <footer>
+        <span>&copy; 2026 Ridgeway Barbers Plymouth</span>
+        <span>Precision · Clean · Consistent</span>
+    </footer>
+</body>
+</html>
